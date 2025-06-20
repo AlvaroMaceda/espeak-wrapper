@@ -100,8 +100,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     <i class="fas fa-download"></i> Download audio file
                 </a>`;
 
-            const dateFormatted = item.timestamp ? new Date(item.timestamp).toLocaleString() : 'Unknown date';
-
             historyHtml += `
                 <div class="card speech-item" data-index="${index}">
                     <div class="speech-header">
@@ -110,12 +108,8 @@ document.addEventListener('DOMContentLoaded', function() {
                             <i class="fas fa-times"></i>
                         </button>
                     </div>
-                    <div class="speech-meta">
-                        <span class="speech-date">${dateFormatted}</span>
-                    </div>
                     <div class="text-content">
-                        <p><strong>Text:</strong> "${item.text.substring(0, 100)}${item.text.length > 100 ? '...' : ''}"</p>
-                        <p><strong>Voice:</strong> ${item.voice || 'Default'}, <strong>Speed:</strong> ${item.speed || 'Default'} wpm</p>
+                        <p>"${item.text.substring(0, 100)}${item.text.length > 100 ? '...' : ''}"</p>
                     </div>
                     ${audioSection}
                 </div>

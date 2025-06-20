@@ -318,16 +318,15 @@ th {
     background-color: #ffffff;
     border: 1px solid var(--gray);
     border-radius: 8px;
-    font-size: 0.95rem;
+    font-size: 1rem;
     line-height: 1.5;
+    font-style: italic;
+    color: var(--text-color);
 }
 
 .text-content p {
-    margin-bottom: 0.5rem;
-}
-
-.text-content p:last-child {
     margin-bottom: 0;
+    text-align: center;
 }
 
 .speech-item {
@@ -349,7 +348,9 @@ th {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 0.5rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid var(--gray);
+    padding-bottom: 0.5rem;
 }
 
 .delete-btn {
