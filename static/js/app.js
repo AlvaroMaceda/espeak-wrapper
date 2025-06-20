@@ -1,6 +1,45 @@
 // Main JavaScript for eSpeak Wrapper
 
 document.addEventListener('DOMContentLoaded', function() {
+    // Store history of speech items
+    let speechHistory = [];
+
+    // Function to render all speech items
+    function renderSpeechHistory() {
+        const resultDiv = document.getElementById('result');
+        const historyTitle = document.getElementById('historyTitle');
+
+        if (speechHistory.length === 0) {
+            resultDiv.innerHTML = '';
+            historyTitle.style.display = 'none';
+            return;
+        }
+
+        historyTitle.style.display = 'block';
+        let historyHtml = '';
+        speechHistory.forEach((item, index) => {
+            historyHtml += `
+                <div class="card speech-item">
+                    <h3 class="result-title">Generated Speech #${speechHistory.length - index}</h3>
+                    <div class="text-content">
+                        <p><strong>Text:</strong> "${item.text.substring(0, 100)}${item.text.length > 100 ? '...' : ''}"</p>
+                    </div>
+                    <div class="audio-player">
+                        <audio controls ${index === 0 ? 'autoplay' : ''}>
+                            <source src="${item.audioUrl}" type="audio/wav">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </div>
+                    <a href="${item.audioUrl}" download="speech_${Date.now()}.wav" class="download-link">
+                        <i class="fas fa-download"></i> Download audio file
+                    </a>
+                </div>
+            `;
+        });
+
+        resultDiv.innerHTML = historyHtml;
+    }
+
     // Handle form submission
     document.getElementById('speakForm').addEventListener('submit', async function(e) {
         e.preventDefault();
@@ -32,20 +71,25 @@ document.addEventListener('DOMContentLoaded', function() {
                 const blob = await response.blob();
                 const url = URL.createObjectURL(blob);
 
-                resultDiv.innerHTML = `
-                    <div class="card">
-                        <h3 class="result-title">Generated Speech</h3>
-                        <div class="audio-player">
-                            <audio controls autoplay>
-                                <source src="${url}" type="audio/wav">
-                                Your browser does not support the audio element.
-                            </audio>
-                        </div>
-                        <a href="${url}" download="speech.wav" class="download-link">
-                            <i class="fas fa-download"></i> Download audio file
-                        </a>
-                    </div>
-                `;
+                // Add to history (prepend for newest first)
+                speechHistory.unshift({
+                    text: text,
+                    voice: voice,
+                    speed: speed,
+                    audioUrl: url,
+                    timestamp: new Date()
+                });
+
+                // Limit history to last 5 items
+                if (speechHistory.length > 5) {
+                    speechHistory = speechHistory.slice(0, 5);
+                }
+
+                // Render updated history
+                renderSpeechHistory();
+
+                // Reset the text field for new input
+                document.getElementById('text').value = '';
             } else {
                 const error = await response.json();
                 resultDiv.innerHTML = `

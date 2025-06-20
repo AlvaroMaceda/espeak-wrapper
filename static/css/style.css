@@ -217,7 +217,7 @@ footer {
 
 /* API Documentation specific styles */
 .section-title {
-    margin-bottom: 1rem;
+    margin: 1rem 0;
     color: var(--text-color);
     font-size: 1.5rem;
     padding-bottom: 0.5rem;
@@ -310,6 +310,38 @@ th {
 
 .nav-link i {
     margin-right: 5px;
+}
+
+.text-content {
+    margin-bottom: 1rem;
+    padding: 0.8rem;
+    background-color: #ffffff;
+    border: 1px solid var(--gray);
+    border-radius: 8px;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.text-content p {
+    margin-bottom: 0.5rem;
+}
+
+.text-content p:last-child {
+    margin-bottom: 0;
+}
+
+.speech-item {
+    margin-bottom: 1.5rem;
+    border-left: 4px solid var(--primary-color);
+}
+
+.speech-item:first-child {
+    border-left: 4px solid var(--secondary-color);
+}
+
+.speech-item .result-title {
+    display: flex;
+    align-items: center;
 }
 
 /* Media queries for responsive design */
