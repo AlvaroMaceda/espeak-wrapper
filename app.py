@@ -12,7 +12,33 @@ app = Flask(__name__, static_folder='static', template_folder='templates')
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    default_voice = os.getenv('DEFAULT_VOICE', 'en')
+    default_speed = os.getenv('DEFAULT_SPEED', '160')
+
+    # Define available voices with their display names
+    voices = [
+        {'code': 'en', 'name': 'English'},
+        {'code': 'en-us', 'name': 'English (US)'},
+        {'code': 'en-gb', 'name': 'English (UK)'},
+        {'code': 'es', 'name': 'Spanish'},
+        {'code': 'es-la', 'name': 'Spanish (Latin America)'},
+        {'code': 'fr', 'name': 'French'},
+        {'code': 'de', 'name': 'German'},
+        {'code': 'it', 'name': 'Italian'},
+        {'code': 'pt', 'name': 'Portuguese'},
+        {'code': 'pt-br', 'name': 'Portuguese (Brazil)'},
+        {'code': 'ru', 'name': 'Russian'},
+        {'code': 'zh', 'name': 'Chinese'},
+        {'code': 'ja', 'name': 'Japanese'},
+        {'code': 'ko', 'name': 'Korean'},
+        {'code': 'hi', 'name': 'Hindi'},
+        {'code': 'ar', 'name': 'Arabic'}
+    ]
+
+    return render_template('index.html',
+                          default_voice=default_voice,
+                          default_speed=default_speed,
+                          voices=voices)
 
 @app.route('/speak')
 def speak():

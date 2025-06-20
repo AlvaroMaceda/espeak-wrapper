@@ -17,28 +17,15 @@
             <div class="form-group half">
                 <label for="voice">Voice/Language</label>
                 <select id="voice" name="voice">
-                    <option value="en">English</option>
-                    <option value="en-us">English (US)</option>
-                    <option value="en-gb">English (UK)</option>
-                    <option value="es">Spanish</option>
-                    <option value="es-la">Spanish (Latin America)</option>
-                    <option value="fr">French</option>
-                    <option value="de">German</option>
-                    <option value="it">Italian</option>
-                    <option value="pt">Portuguese</option>
-                    <option value="pt-br">Portuguese (Brazil)</option>
-                    <option value="ru">Russian</option>
-                    <option value="zh">Chinese</option>
-                    <option value="ja">Japanese</option>
-                    <option value="ko">Korean</option>
-                    <option value="hi">Hindi</option>
-                    <option value="ar">Arabic</option>
+                    {% for voice in voices %}
+                    <option value="{{ voice.code }}" {% if default_voice == voice.code %}selected{% endif %}>{{ voice.name }}</option>
+                    {% endfor %}
                 </select>
             </div>
 
             <div class="form-group half">
                 <label for="speed">Speed (words per minute)</label>
-                <input type="number" id="speed" name="speed" value="160" min="80" max="500">
+                <input type="number" id="speed" name="speed" value="{{ default_speed }}" min="80" max="500">
             </div>
         </div>
 
