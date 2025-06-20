@@ -344,6 +344,77 @@ th {
     align-items: center;
 }
 
+/* Speech history styles */
+.speech-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.delete-btn {
+    background: none;
+    border: none;
+    color: var(--error);
+    cursor: pointer;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s;
+}
+
+.delete-btn:hover {
+    background-color: rgba(234, 67, 53, 0.1);
+}
+
+.clear-all-btn {
+    background-color: transparent;
+    border: 1px solid var(--error);
+    color: var(--error);
+    padding: 0.4rem 0.8rem;
+    font-size: 0.9rem;
+    margin-left: 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.clear-all-btn:hover {
+    background-color: rgba(234, 67, 53, 0.1);
+}
+
+.speech-meta {
+    font-size: 0.8rem;
+    color: #70757a;
+    margin-bottom: 0.5rem;
+}
+
+.audio-unavailable {
+    background-color: #f8f8f8;
+    padding: 1rem;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.regenerate-btn {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.regenerate-btn:hover {
+    background-color: var(--primary-dark);
+}
+
 /* Media queries for responsive design */
 @media (max-width: 768px) {
     .card {
